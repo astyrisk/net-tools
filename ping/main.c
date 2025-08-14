@@ -55,6 +55,7 @@ int main(int argc, char *argv[]) {
         char send_buffer[64];
         memset(send_buffer, 0, sizeof(send_buffer));
 
+        /* https://github.com/torvalds/linux/blob/master/include/uapi/linux/icmp.h */
         struct icmphdr *icmp_hdr = (struct icmphdr *)send_buffer;
         icmp_hdr->type = ICMP_ECHO;
         icmp_hdr->code = 0;
@@ -90,7 +91,7 @@ int main(int argc, char *argv[]) {
         struct timeval end_time;
         gettimeofday(&end_time, NULL);
 
-
+        /* https://github.com/torvalds/linux/blob/master/include/uapi/linux/ip.h */
         struct iphdr* ip_hdr = (struct iphdr *) recv_buffer;
 
         int ip_hdr_len = ip_hdr-> ihl * 4;
